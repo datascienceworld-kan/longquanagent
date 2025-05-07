@@ -138,11 +138,24 @@ Function tools are registered directly in your runtime code by decorating them w
 
 
 ```python
-from longquanagent.register.tool import function_tool
-from typing import List
+agent = Agent(
+    agent_name = "Sum Agent",
+    description="You can sum a list",
+    llm = setup_llm,
+    skills = [
+        "You can calculate a list and array of numbers",
+    ],
+    agent_template="agent_template/agent_template.json"
+)
 
-@function_tool
+@agent.function_tool
 def sum_of_series(x: List[float]):
+    '''Sum of series
+    Args:
+        - x: List of numbers
+    Returns:
+        - Sum of series
+    '''
     return f"Sum of list is {sum(x)}"
 ```
 ```
